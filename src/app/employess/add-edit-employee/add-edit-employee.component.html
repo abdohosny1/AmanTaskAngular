@@ -1,0 +1,53 @@
+<div class="modal-content styleform px-3 py-3" >
+  <p *ngIf="employee.id === 0">Add New Employee</p>
+  <p *ngIf="!(employee.id ===0)">Edit Employee</p>
+
+  <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
+
+
+  <div class="form-group">
+      <input [class.is-invalid]="name?.invalid && name?.touched"
+       [(ngModel)]="employee.name" type="text" required  class="form-control" formControlName="name"
+        placeholder="Employee Name">
+        <div *ngIf="name?.invalid && name?.touched || submitted">
+          <small class="text-danger"  *ngIf="name?.errors?.['required']">  Name is requried</small>
+      </div>
+  </div>
+  &nbsp;
+  <div class="form-group">
+     <select [(ngModel)]="employee.departmentId" required
+      [class.is-invalid]="departmentId?.invalid && departmentId?.touched"
+     formControlName="departmentId"
+     class="custom-select mb-3"
+     name="Department" (change)="changeDepartment($event)" class="form-control">
+     <option value="0"  selected disabled>Select User</option>
+
+      <option  [value]="item.id" *ngFor=" let item of department">
+        {{item.name}}
+      </option>
+     </select>
+     <div class="invalid-feedback" *ngIf="submitted && departmentId?.invalid">
+      <sup>*</sup>department is requried
+    </div>
+     <div *ngIf="departmentId?.invalid && departmentId?.touched || submitted ">
+      <small class="text-danger"  *ngIf="departmentId?.errors?.['required']">  department is requried</small>
+  </div>
+  </div>
+  &nbsp;
+  <div class="form-group">
+
+      <input [(ngModel)]="employee.address" required  [class.is-invalid]="address?.invalid && address?.touched"
+      formControlName="address"
+       type="text" class="form-control" placeholder="Employee Address">
+       <div *ngIf="address?.invalid && address?.touched || submitted">
+        <small class="text-danger"  *ngIf="address?.errors?.['required']">  Address is requried</small>
+    </div>
+  </div>
+  &nbsp;
+  <button class="btn btn-primary" type="submit" *ngIf="employee.id=== 0" > Add</button>
+  &nbsp; <button type="submit" class="btn btn-primary" *ngIf="!(employee.id=== 0)" > Edit</button>
+  &nbsp; <button class="btn btn-danger"  (click)="bsModel.hide()">Cancle</button>
+
+
+</form>
+</div>

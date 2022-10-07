@@ -1,0 +1,30 @@
+<div class="modal-content styleform px-3 py-3" >
+  <p *ngIf="department.id === 0">Add New Department</p>
+  <p *ngIf="!(department.id ===0)">Edit Department</p>
+
+  <form  class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
+
+  <!-- <div class="form-group">
+
+    <input
+    *ngIf="!(department.id ===0)" [(ngModel)]="department.id"
+     type="text" disabled="true"  class="form-control" >
+</div> -->
+  <div class="form-group">
+
+      <input [class.is-invalid]="name?.invalid && name?.touched"
+       [(ngModel)]="department.name" type="text" class="form-control" formControlName="name"
+        placeholder="Department Name">
+        <div *ngIf="name?.invalid && name?.touched || submitted">
+          <small class="text-danger"  *ngIf="name?.errors?.['required']">  Name is requried</small>
+      </div>
+  </div>
+
+  &nbsp;
+  <button type="submit" class="btn btn-primary" *ngIf="department.id=== 0" > Add</button>
+  &nbsp; <button type="submit" class="btn btn-primary" *ngIf="!(department.id=== 0)" > Edit</button>
+  &nbsp; <button class="btn btn-danger"  (click)="bsModel.hide()">Cancle</button>
+
+
+</form>
+</div>

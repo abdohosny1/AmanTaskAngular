@@ -1,0 +1,29 @@
+
+<div class="container mt-5" >
+  <div class="row position-absolute top-0 start-50 translate-middle"  style="margin-top: 250px; background-color:#f5f5f5 ;">
+
+  <h4>Department</h4>
+  <hr />
+  <dl class="row container" >
+      <dt class = "col-sm-2">
+          Id=
+      </dt>
+      <dd class = "col-sm-10">
+          {{oneDepartment.id}}
+      </dd>
+      <dt class = "col-sm-2">
+          Name =
+      </dt>
+      <dd class = "col-sm-10">
+          {{oneDepartment.name}}
+      </dd>
+
+
+  </dl>
+
+  <form method="post" >
+
+      <input type="button" (click)="BackToDepartment()" value="Back TO List" class="btn btn-info" />
+  </form>
+</div>
+</div>
